@@ -1,8 +1,23 @@
 <!DOCTYPE html>
+
+
+<?php
+	include 'database/config.php';
+	$getProd = "SELECT *
+FROM product
+INNER JOIN img ON img.prodId = product.id";
+;
+$result = mysqli_query($connect, $getProd);
+
+
+
+?>
+
+
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Bootstrap E-commerce Templates</title>
+		<title>Shoes Shop</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
@@ -38,9 +53,9 @@
 					<div class="account pull-right">
 						<ul class="user-menu">				
 							<li><a href="#">Tài Khoản</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.html">Đăng nhập</a></li>		
+							<li><a href="cart.html">Giỏ Hàng</a></li>
+							<li><a href="checkout.html">Kiểm Tra</a></li>					
+							<li><a href="register.php">Đăng nhập</a></li>
 						</ul>
 					</div>
 				</div>
@@ -49,7 +64,7 @@
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="themes/images/rsz_logo-200x200_0.png" class="site_logo" alt=""></a>
+					<a href="index.php" class="logo pull-left"><img src="themes/images/rsz_logo-200x200_0.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="./products.html">Rick Owens</a>					
@@ -109,77 +124,24 @@
 								<div id="myCarousel" class="myCarousel carousel slide">
 									<div class="carousel-inner">
 										<div class="active item">
-											<ul class="thumbnails">												
-												<li class="span3">
-													<div class="product-box">
-														<span class="sale_tag"></span>
-														<p><a href="product_detail.html"><img src="themes/images/ladies/rsz_994562ad21dfd13470b2090feb5ded25.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Ut wisi enim ad</a><br/>
-														<a href="products.html" class="category">Commodo consequat</a>
-														<p class="price">$17.25</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<span class="sale_tag"></span>
-														<p><a href="product_detail.html"><img src="themes/images/ladies/rsz_11405408805640.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Quis nostrud exerci tation</a><br/>
-														<a href="products.html" class="category">Quis nostrud</a>
-														<p class="price">$32.50</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/ladies/rsz_1451333568981.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Know exactly turned</a><br/>
-														<a href="products.html" class="category">Quis nostrud</a>
-														<p class="price">$14.20</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/ladies/rsz_1405476625933.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">You think fast</a><br/>
-														<a href="products.html" class="category">World once</a>
-														<p class="price">$31.45</p>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="item">
 											<ul class="thumbnails">
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/ladies/rsz_1405466890186.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Know exactly</a><br/>
-														<a href="products.html" class="category">Quis nostrud</a>
-														<p class="price">$22.30</p>
+                                                <?php
+                                                if (isset($result) && mysqli_num_rows($result) > 0) {
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                        echo "
+                                                        <li class=\"span3\">
+													    <div class=\"product-box\">
+														<span class=\"sale_tag\"></span>
+														<p><a href=\"product_detail.html\"><img src=\"${row['url']}\" alt=\"\" /></a></p>
+														<a href=\"product_detail.html\" class=\"title\">${row['title']}</a><br/>
+														<a href=\"products.html\" class=\"category\">Commodo consequat</a>
+														<p class=\"price\">$17.25</p>
 													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/ladies/o_men-slipper-thong-sandal-flip-flops-loafer-shoes-9b5e_400sq-342x342.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Ut wisi enim ad</a><br/>
-														<a href="products.html" class="category">Commodo consequat</a>
-														<p class="price">$40.25</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/ladies/rsz_3946.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">You think water</a><br/>
-														<a href="products.html" class="category">World once</a>
-														<p class="price">$10.45</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/ladies/rsz_375526.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Quis nostrud exerci</a><br/>
-														<a href="products.html" class="category">Quis nostrud</a>
-														<p class="price">$35.50</p>
-													</div>
-												</li>																																	
+												    </li>
+                                                        ";
+                                                    }
+                                                }
+                                                ?>
 											</ul>
 										</div>
 									</div>							
@@ -334,11 +296,11 @@
 					<div class="span3">
 						<h4>Hướng Dẫn</h4>
 						<ul class="nav">
-							<li><a href="./index.html">Trang Chủ</a></li>  
+							<li><a href="./index.php">Trang Chủ</a></li>
 							<li><a href="./about.html">Nhận xét về chúng tôi</a></li>
 							<li><a href="./contact.html">Liên Hệ Chúng Tôi</a></li>
 							<li><a href="./cart.html">Giỏ Hàng</a></li>
-							<li><a href="./register.html">Đăng Nhập</a></li>							
+							<li><a href="./register.php">Đăng Nhập</a></li>
 						</ul>					
 					</div>
 					<div class="span4">
